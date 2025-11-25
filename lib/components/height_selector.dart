@@ -13,23 +13,43 @@ class _HeightSelectorState extends State<HeightSelector> {
   double height = 170; //Altura inicial
   @override
   Widget build(BuildContext context) {
-    return Column(
-      children: [
-        Text("ALTURA", style: TextStyles.bodyText),
-        Text("$height cm", style: TextStyles.bodyText),
-        Slider(
-          value: height,
-          onChanged: (newHeight) {
-            setState(() {
-              height = newHeight;
-            });
-          },
-          min: 150,
-          max: 220,
-          divisions: 70,
-          activeColor: AppColors.primary,
+    return Padding(
+      padding: const EdgeInsets.only(left: 16, right: 16),
+      child: Container(
+        decoration: BoxDecoration(
+          color: AppColors.backgroundComponent,
+          borderRadius: BorderRadius.circular(16),
         ),
-      ],
+        child: Column(
+          children: [
+            Padding(
+              padding: const EdgeInsets.only(top: 12.0),
+              child: Text("ALTURA", style: TextStyles.bodyText),
+            ),
+            Text(
+              "${height.toStringAsFixed(0)} cm",
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 38,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+            Slider(
+              value: height,
+              onChanged: (newHeight) {
+                setState(() {
+                  height = newHeight;
+                });
+              },
+              min: 150,
+              max: 220,
+              divisions: 70,
+              label: "${height.toStringAsFixed(0)} cm",
+              activeColor: AppColors.primary,
+            ),
+          ],
+        ),
+      ),
     );
   }
 }
